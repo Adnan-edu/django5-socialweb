@@ -1,0 +1,64 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environment
+venv/
+.env/
+env/
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Django migrations
+**/migrations/*.pyc
+**/migrations/*.pyo
+**/migrations/__pycache__/
+
+# Media and static files
+media/
+staticfiles/
+static/
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Coverage and testing
+.coverage
+*.cover
+coverage.xml
+nosetests.xml
+pytest_cache/
+
+# MyPy and Pylint
+.mypy_cache/
+.pylint.d/
+
+# Celery
+celerybeat-schedule
+
+# Gunicorn
+*.pid
+
+# Docker
+*.pid
+*.log
+docker-compose.override.yml
+
+# MacOS
+.DS_Store
+
+# Environment variables and secrets
+.env
+*.pem
+secrets.json
