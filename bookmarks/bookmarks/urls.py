@@ -23,6 +23,8 @@ from django.urls import include, path
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('account/', include('account.urls')),
+    path('social-auth/',
+         include('social_django.urls', namespace='social'))
 ]
 
 # Added static() helper function to serve media files with the Django development server during development.
