@@ -8,6 +8,7 @@ from .models import Profile, Contact
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from actions.utils import create_action
+from actions.models import Action
 
 
 # Create your views here.
@@ -37,11 +38,24 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+    # Display all actions by default
+    actions = Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list(
+        'id', flat=True
+    )
+    if following_ids:
+        # If user is following others, retrieve only their actions
+        actions = actions.filter(user_id__in=following_ids)
+    # Retrieve related objects for one-to-many relationships    
+    actions = actions.select_related(
+        'user', 'user__profile'     # user_profile to join the Profile table in a single SQL query
+    ).prefetch_related('target')[:10] # For the target GenericForeignKey field
     return render(
         request,
         'account/dashboard.html',
         {
-            'section': 'dashboard'
+            'section': 'dashboard',
+            'actions': actions
         }
     )
 
