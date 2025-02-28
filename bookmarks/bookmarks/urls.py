@@ -26,6 +26,7 @@ urlpatterns = [
     path('social-auth/',
          include('social_django.urls', namespace='social')),
     path('images/', include('images.urls', namespace='images')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 # Added static() helper function to serve media files with the Django development server during development.
